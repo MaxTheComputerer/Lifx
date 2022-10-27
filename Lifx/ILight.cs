@@ -47,5 +47,10 @@ namespace Lifx
 		Task SetColorAsync(Color color, CancellationToken cancellationToken);
 		Task SetColorAsync(Color color, uint durationInMilliseconds);
 		Task SetColorAsync(Color color, uint durationInMilliseconds, CancellationToken cancellationToken);
+		Task SetColorAndBrightness(Color color, Percentage brightness);
+		Task SetColorAndBrightness(Color color, Percentage brightness, CancellationToken cancellationToken);
+		Task SetColorAndBrightness(Color color, Percentage brightness, uint durationInMilliseconds);
+		Task SetColorAndBrightness(Color color, Percentage brightness, uint durationInMilliseconds,
+			CancellationToken cancellationToken);
 	}
 }

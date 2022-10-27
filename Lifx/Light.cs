@@ -185,6 +185,34 @@ namespace Lifx
 			).ConfigureAwait(false);
 		}
 
+		public async Task SetColorAndBrightness(Color color, Percentage brightness)
+			=> await SetColorAndBrightness(color, brightness, CancellationToken.None).ConfigureAwait(false);
+
+		public async Task SetColorAndBrightness(Color color, Percentage brightness, CancellationToken cancellationToken)
+			=> await SetColorAndBrightness(color, brightness, DefaultDurationInMilliseconds, cancellationToken).ConfigureAwait(false);
+
+		public async Task SetColorAndBrightness(Color color, Percentage brightness, uint durationInMilliseconds)
+			=> await SetColorAndBrightness(color, brightness, durationInMilliseconds, CancellationToken.None).ConfigureAwait(false);
+
+		public async Task SetColorAndBrightness(Color color, Percentage brightness, uint durationInMilliseconds,
+			CancellationToken cancellationToken)
+		{
+			if (!Product.SupportsColor())
+			{
+				throw new InvalidOperationException($"{Product} does not support color.");
+			}
+
+			var state = await GetStateAsync().ConfigureAwait(false);
+
+			await SetPropertiesAsync(
+				color,
+				brightness,
+				state.Temperature,
+				durationInMilliseconds,
+				cancellationToken
+			).ConfigureAwait(false);
+		}
+
 		public override string ToString()
 			=> $"[Address: {Address}; Product: {Product}; Version: {Version}]";
 
