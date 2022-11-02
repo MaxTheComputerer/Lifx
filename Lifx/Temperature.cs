@@ -15,7 +15,7 @@ namespace Lifx
 			Value = value;
 		}
 
-		public static int MinValue { get; } = 2500;
+		public static int MinValue { get; } = 1500;
 		public static int MaxValue { get; } = 9000;
 
 		public static Temperature None { get; } = MinValue;
